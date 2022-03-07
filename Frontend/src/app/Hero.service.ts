@@ -12,8 +12,6 @@ export class HeroService {
 
   private apiUrl = 'https://localhost:7299/api/Heroes';
 
-  private getHeroesUrl = 'https://localhost:7299/api/Heroes/getAll';
-
   /**
    * Handle Http operation that failed.
    * Let the app continue.
@@ -42,7 +40,7 @@ export class HeroService {
 
   /** GET hero by id. Will 404 if id not found */
   getHero(id: number): Observable<hero> {
-    const url = `${this.apiUrl}/get/${id}`;
+    const url = `${this.apiUrl}/getById/${id}`;
     return this.http.get<hero>(url);
   }
 
@@ -51,7 +49,7 @@ export class HeroService {
       return of([]);
     }
 
-    return this.http.get<hero[]>(`${this.apiUrl}/?name=${term}`);
+    return this.http.get<hero[]>(`${this.apiUrl}/search/${term}`);
   }
 
   private log(message: string) {

@@ -5,9 +5,10 @@
 
 
 <ul class="heroes">
-  <li *ngFor="let heroInForeach of thisHeroesArray">
-    <button [class.selected]="heroInForeach === selectedHero" type="button" (click)="onSelect(heroInForeach)"></button>
-    <span class="badge">{{heroInForeach.id}}</span> {{heroInForeach.name}} <span class="badge"
-      *ngIf="heroInForeach.power">POWER: {{heroInForeach.power}}</span>
-  </li>
+  <div *ngFor="let heroInForeach of thisHeroesArray">
+    <button [class.selected]="heroInForeach === selectedHero" type="button"
+      (click)="onSelect(heroInForeach)">{{heroInForeach.id}}</button>
+    {{heroInForeach.name}} <span class="badge" *ngIf="heroInForeach.power">POWER:
+      {{heroInForeach.power}}</span>
+  </div>
 </ul>

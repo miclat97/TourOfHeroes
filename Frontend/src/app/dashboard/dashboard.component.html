@@ -1,6 +1,6 @@
 <h2>Top Heroes</h2>
 <div class="heroes-menu">
   <a *ngFor="let hero of heroes">
-    {{hero.name}} <span *ngIf="hero.power">PWR: {{hero.power}}</span>
+    {{hero.name}} <br /><span *ngIf="hero.power">POWER: {{hero.power}}</span><span *ngIf="!hero.power">NO POWER</span>
   </a>
 </div>
