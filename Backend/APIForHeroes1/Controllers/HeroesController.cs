@@ -25,13 +25,27 @@ namespace APIForHeroes1.Controllers
         [HttpGet("getById/{id}")]
         public ActionResult<Hero?> GetById(int id)
         {
-            return MainListOfHeroes.Heroes.FirstOrDefault(x => x.Id == id);
+            return Ok(MainListOfHeroes.Heroes.FirstOrDefault(x => x.Id == id));
+        }
+
+        [HttpGet("search/{searchName}")]
+        public ActionResult<List<Hero>> Search(string searchName)
+        {
+            List<Hero> resultList = MainListOfHeroes.Heroes.Where(x => x.Name.Contains(searchName)).ToList();
+            if (resultList.Any())
+            {
+                return Ok(resultList);
+            }
+            else
+            {
+                return NoContent();
+            }
         }
 
         [HttpPut("update/{id}/{name}/{power}")]
         public ActionResult Update(int id, string name, int? power)
         {
-            Hero? heroToUpdate = MainListOfHeroes.Heroes.SingleOrDefault(x => x.Id == id);
+            Hero? heroToUpdate = MainListOfHeroes.Heroes.FirstOrDefault(x => x.Id == id);
 
             if (heroToUpdate == null)
             {
@@ -41,13 +55,13 @@ namespace APIForHeroes1.Controllers
             heroToUpdate.Name = name;
             heroToUpdate.Power = power;
 
-            return NoContent();
+            return Ok(heroToUpdate);
         }
 
         [HttpDelete("delete/{id}")]
         public ActionResult Delete(int id)
         {
-            Hero? heroToDelete = MainListOfHeroes.Heroes.SingleOrDefault(x => x.Id == id);
+            Hero? heroToDelete = MainListOfHeroes.Heroes.FirstOrDefault(x => x.Id == id);
 
             MainListOfHeroes.Heroes.Remove(heroToDelete);
 
@@ -57,8 +71,20 @@ namespace APIForHeroes1.Controllers
         [HttpPost("create")]
         public ActionResult Create(Hero hero)
         {
+            int nextId;
+
+            if (!MainListOfHeroes.Heroes.Any())
+            {
+                nextId = 1;
+            }
+            else
+            {
+                nextId = MainListOfHeroes.Heroes.Last().Id + 1;
+            }
+
+            hero.Id = nextId;
             MainListOfHeroes.Heroes.Add(hero);
-            return Ok();
+            return Created($"api/Heroes/getById/{hero.Id}", hero);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace APIForHeroes1.Data
     public static class MainListOfHeroes
     {
         public static bool FirstRun = true;
-        public static List<Hero>? Heroes = new List<Hero>() { new Hero()
+        public static List<Hero> Heroes = new List<Hero>() { new Hero()
                 {
                     Id = 1,
                     Name = "dr hero0",
