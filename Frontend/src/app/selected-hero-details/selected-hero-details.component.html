@@ -1,11 +1,13 @@
 <div *ngIf="selectedHeroInComponent">
 
-  <h2>{{selectedHeroInComponent.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{selectedHeroInComponent.id}}</div>
+  <h2>{{selectedHeroInComponent.name | uppercase}}</h2>
+  <div><span>ID: </span>{{selectedHeroInComponent.id}}</div>
   <div>
-    <label for="hero-name">Hero name: </label>
-    <input id="hero-name" [(ngModel)]="selectedHeroInComponent.name" placeholder="name">
+    <label for="hero-name">Nazwa: </label>
+    <input id="hero-name" [(ngModel)]="selectedHeroInComponent.name" placeholder="Name">
   </div>
-  <div *ngIf="selectedHeroInComponent.power != null"><span>power: </span>{{selectedHeroInComponent.power}}</div>
-  <div *ngIf="selectedHeroInComponent.power == null"><span>No power</span></div>
+  <div>
+    <span>Power: </span>
+    <input id="hero-name" [(ngModel)]="selectedHeroInComponent.power" placeholder="Power" type="number">
+  </div>
 </div>

@@ -33,7 +33,7 @@ export class HeroesComponent implements OnInit {
   selectedHero?: hero;
   onSelect(hero: hero): void {
     this.selectedHero = hero;
-    this.messageService.add('wybrano hero o nazwie: ' + hero.name)
+    this.messageService.add('Wybrano hero o nazwie: ' + hero.name)
   }
 
   constructor(private heroService: HeroService, private messageService: MessagesService) { }

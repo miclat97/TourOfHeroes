@@ -1,7 +1,7 @@
 <h2>Wiadomości:</h2>
 <div *ngIf="messageService.messages.length">
 
-  <button type="button" class="clear" (click)="messageService.clear()">Usun wiadomosci</button>
+  <button type="button" class="clear" (click)="messageService.clear()">Usuń wiadomosci</button>
   <div *ngFor='let message of messageService.messages'> {{message | uppercase}} </div>
 
 </div>

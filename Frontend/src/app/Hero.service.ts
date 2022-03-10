@@ -52,6 +52,10 @@ export class HeroService {
     return this.http.get<hero[]>(`${this.apiUrl}/search/${term}`);
   }
 
+  saveHero(id: number, name: string, power: number): Observable<hero> {
+    return this.http.put<hero>(`${this.apiUrl}/update/${id}/${name}/${power}`, null);
+  }
+
   private log(message: string) {
     this.messageService.add(`HeroService: ${message}`);
   }

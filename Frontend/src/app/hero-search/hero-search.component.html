@@ -5,7 +5,8 @@
   <ul class="search-result">
     <li *ngFor="let hero of heroes$ | async">
       <div>
-        {{hero.name}}
+        <span>ID: {{hero.id}}. {{hero.name}}</span> - <span *ngIf="hero.power">Power: {{hero.power}}</span><span
+          *ngIf="!hero.power">No power</span>
       </div>
     </li>
   </ul>
